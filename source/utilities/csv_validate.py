@@ -25,6 +25,7 @@ from source.cli import CSVUtils
 class ValidateCSV(CSVUtils):
     prog = "csv-validate"
     description = "This utility is designed to validate CSV file."
+    usage = "%(prog)s file [options]"
 
     def main(self) -> None:
         with open(

@@ -28,6 +28,7 @@ from source.helpers import null_striper
 class DeNULLCSV(CSVUtils):
     prog = "csv-remove-nulls"
     description = "This utility is designed to remove null characters and rows from a CSV file."
+    usage = "%(prog)s file [options]"
 
     def add_arguments(self) -> None:
         super().add_arguments()

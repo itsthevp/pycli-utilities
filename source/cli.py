@@ -28,6 +28,7 @@ from time import time
 class CLIUtils:
     prog = ""
     description = ""
+    usage = ""
     epilog = "Feel free to suggest new features / improvements at https://github.com/itsthevp"
 
     def __init__(self) -> None:
@@ -83,8 +84,8 @@ class CLIUtils:
         # Base parser initialization
         self.parser = ArgumentParser(
             prog=self.prog,
+            usage=self.usage,
             description=self.description,
-            usage="%(prog)s file [options]",
             epilog=self.epilog,
         )
 
