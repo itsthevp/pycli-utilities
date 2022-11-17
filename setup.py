@@ -28,6 +28,7 @@ setup(
         "console_scripts": [
             "csv-validate = source.utilities.csv_validate:run",
             "csv-remove-nulls = source.utilities.csv_remove_nulls:run",
+            "csv-remove-column = source.utilities.csv_remove_column:run",
         ]
     },
 )
