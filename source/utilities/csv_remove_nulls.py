@@ -41,20 +41,27 @@ class DeNULLCSV(CSVUtils):
         )
 
     def main(self) -> None:
-        with open(self.args.input, "r") as r, open(self.args.output, "w") as w:
+        with (
+            open(self.args.input, "r", encoding=self.args.encoding) as r,
+            open(self.args.output, "w", encoding=self.args.encoding) as w,
+        ):
             line = r.readline()
             while line:
                 stripped_line = null_striper(line)
-                if len(stripped_line) == len(line) and len(line) > 1:
-                    # Nothing modified, Line didn't have any NULLs
-                    # >1 is to make surewe don't write empty lines
-                    # So, writing as it is
-                    w.write(line)
-                else:
-                    # Length modified means Line was having NULL
-                    # So, here we have to check for NULL row as well (containing only separators)
-                    if len(stripped_line.replace(self.args.seperator, "")):
-                        w.write(stripped_line)
+                if len(stripped_line) > 1:
+                    # >1 is to make sure we don't write empty lines
+                    if len(stripped_line) == len(line):
+                        # Nothing modified which implies that the line was without NULLs
+                        # So, writing as it is
+                        w.write(line)
+                    else:
+                        # Length modified means Line was having NULL
+                        # So, here we have to check for NULL row as well (containing only separators)
+                        if (
+                            len(stripped_line.replace(self.args.seperator, ""))
+                            > 1
+                        ):
+                            w.write(stripped_line)
                 line = r.readline()
 
 
