@@ -59,7 +59,7 @@ class DeNULLCSV(CSVUtils):
                         # Length modified means Line was having NULL
                         # So, here we have to check for NULL row as well (containing only separators)
                         if (
-                            len(stripped_line.replace(self.args.seperator, ""))
+                            len(stripped_line.replace(self.args.separator, ""))
                             > 1
                         ):
                             w.write(stripped_line)

@@ -32,9 +32,9 @@ class ValidateCSV(CSVUtils):
             file=self.args.input, mode="r", encoding=self.args.encoding
         ) as fo:
             line = fo.readline()
-            cols = line.count(self.args.seperator)
+            cols = line.count(self.args.separator)
             while line:
-                if line.count(self.args.seperator) != cols:
+                if line.count(self.args.separator) != cols:
                     self.log("Result: INVALID")
                     break
                 line = fo.readline()

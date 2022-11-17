@@ -108,10 +108,10 @@ class CSVUtils(CLIUtils):
             help="Specifies the encoding for input CSV file. Defaults to UTF-8.",
         )
         self.parser.add_argument(
-            "--seperator",
-            dest="seperator",
+            "--separator",
+            dest="separator",
             type=str,
             metavar="",
             default=",",
-            help="Column seperator of input CSV file. Defaults to comma.",
+            help="Column separator of input CSV file. Defaults to comma.",
         )
