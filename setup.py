@@ -25,6 +25,9 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
     ],
     entry_points={
-        "console_scripts": ["csv-validate = source.utilities.csv_validate:run"]
+        "console_scripts": [
+            "csv-validate = source.utilities.csv_validate:run",
+            "csv-remove-nulls = source.utilities.csv_remove_nulls:run",
+        ]
     },
 )

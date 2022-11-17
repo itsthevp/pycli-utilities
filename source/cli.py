@@ -112,5 +112,5 @@ class CSVUtils(CLIUtils):
             type=str,
             metavar="",
             default=",",
-            help="Column seperator of input CSV file.",
+            help="Column seperator of input CSV file. Defaults to comma.",
         )
