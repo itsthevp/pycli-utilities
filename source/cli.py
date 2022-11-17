@@ -87,3 +87,30 @@ class CLIUtils:
             usage="%(prog)s file [options]",
             epilog=self.epilog,
         )
+
+
+class CSVUtils(CLIUtils):
+    def add_arguments(self) -> None:
+        super().add_arguments()
+        self.parser.add_argument(
+            "input",
+            type=str,
+            metavar="file",
+            help="Input CSV file's path",
+        )
+        self.parser.add_argument(
+            "--encoding",
+            dest="encoding",
+            type=str,
+            metavar="",
+            default="utf-8",
+            help="Specifies the encoding for input CSV file. Defaults to UTF-8.",
+        )
+        self.parser.add_argument(
+            "--seperator",
+            dest="seperator",
+            type=str,
+            metavar="",
+            default=",",
+            help="Column seperator of input CSV file.",
+        )
