@@ -7,10 +7,10 @@ with open("README.md", "r") as read_me:
     LONG_DESCRIPTION = linesep + read_me.read()
 
 setup(
-    name="cli-utilities",
+    name="cli-utils",
     version="0.0.1",
     author="Vishv Patel (itsthevp)",
-    description="CLI Utilities",
+    description="CLI Utils",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     url="https://github.com/itsthevp/cli-utils",
