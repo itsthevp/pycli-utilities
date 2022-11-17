@@ -1,2 +1,2 @@
-# csv-utils
-Python package for dealing with CSV files.
+# cli-utils
+Python package containing various CLI utilities.
