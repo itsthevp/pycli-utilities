@@ -7,13 +7,14 @@ with open("README.md", "r") as read_me:
     LONG_DESCRIPTION = linesep + read_me.read()
 
 setup(
-    name="cli-utils",
+    name="pycli-utilities",
     version="0.0.1",
     author="Vishv Patel (itsthevp)",
-    description="CLI Utils",
+    description="pyCLI Utilities",
+    keywords=["cli", "utils", "cli-utils", "csv", "json"],
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
-    url="https://github.com/itsthevp/cli-utils",
+    url="https://github.com/itsthevp/pycli-utilities",
     license="MIT",
     python_requires=">=3.6.0",
     packages=find_packages(exclude=["tests"]),
