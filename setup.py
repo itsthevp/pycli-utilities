@@ -30,6 +30,7 @@ setup(
             "csv-remove-nulls = source.utilities.csv_remove_nulls:run",
             "csv-remove-column = source.utilities.csv_remove_column:run",
             "csv-shift-column = source.utilities.csv_shift_column:run",
+            "csv-split = source.utilities.csv_split:run",
         ]
     },
 )
