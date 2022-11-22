@@ -54,3 +54,12 @@ $ csv-split file number_of_records [options]
 ```
 
 This utility is designed to split the large CSV file into multiple CSV files by number of records.
+
+
+#### NDJSON Validator
+
+```console
+$ ndjson-validate file [options]
+```
+
+This utility is designed to validate the NDJSON file.

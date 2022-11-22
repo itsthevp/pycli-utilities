@@ -20,7 +20,6 @@
 """
 
 from argparse import ArgumentParser
-from os import path
 from sys import stdout
 from time import time
 
@@ -116,4 +115,23 @@ class CSVUtils(CLIUtils):
             metavar="",
             default=",",
             help="Column separator of input CSV file. Defaults to comma.",
+        )
+
+
+class NDJSONUtils(CLIUtils):
+    def add_arguments(self) -> None:
+        super().add_arguments()
+        self.parser.add_argument(
+            "input",
+            type=path_validate,
+            metavar="file",
+            help="Input NDJSON file's path",
+        )
+        self.parser.add_argument(
+            "--encoding",
+            dest="encoding",
+            type=str,
+            metavar="",
+            default="utf-8",
+            help="Specifies the encoding for input NDJSON file. Defaults to UTF-8.",
         )
