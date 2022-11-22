@@ -19,6 +19,8 @@
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
+from os import path
+
 
 def null_striper(string: str) -> str:
     """Removes the NULL characters from the given string
@@ -30,3 +32,32 @@ def null_striper(string: str) -> str:
         str: string with NULLs removed
     """
     return string.replace(chr(0), "")
+
+
+def path_validate(file_path: str) -> str:
+    """Handles the validation of the path (cross-platform-compatible)
+
+    Args:
+        file_path (str): path of the file
+
+    Returns:
+        str: Absolute of path of the file if exists else raises FileNotFound Error
+    """
+    if r"/" in file_path:
+        # Unix / Linux Systems
+        _path = file_path.split("/")
+        _path = path.sep.join(_path)
+
+    elif r"\\" in file_path:
+        # Windows Systems
+        _path = file_path.split("\\")
+        _path = path.sep.join(_path)
+
+    else:
+        # Current Directory
+        _path = file_path
+
+    if path.exists(_path):
+        return path.abspath(_path)
+    else:
+        raise FileNotFoundError(f"Unable to find file on the path {file_path}")

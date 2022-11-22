@@ -24,6 +24,8 @@ from os import path
 from sys import stdout
 from time import time
 
+from source.helpers import path_validate
+
 
 class CLIUtils:
     prog = ""
@@ -46,7 +48,7 @@ class CLIUtils:
         self.parser.add_argument(
             "--log-file",
             metavar="",
-            type=str,
+            type=path_validate,
             default=stdout,
             help="File to write logs. Defaults to stdout.",
         )
@@ -95,7 +97,7 @@ class CSVUtils(CLIUtils):
         super().add_arguments()
         self.parser.add_argument(
             "input",
-            type=str,
+            type=path_validate,
             metavar="file",
             help="Input CSV file's path",
         )
