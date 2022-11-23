@@ -135,3 +135,10 @@ class NDJSONUtils(CLIUtils):
             default="utf-8",
             help="Specifies the encoding for input NDJSON file. Defaults to UTF-8.",
         )
+        self.parser.add_argument(
+            "--sort-keys",
+            dest="sort_keys",
+            action="store_true",
+            default=False,
+            help="Sorts the keys of every record of the NDJSON file. Defaults to False",
+        )
