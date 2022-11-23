@@ -33,6 +33,7 @@ setup(
             "csv-shift-column = source.utilities.csv_shift_column:run",
             "csv-split = source.utilities.csv_split:run",
             "ndjson-validate = source.utilities.ndjson_validate:run",
+            "ndjson-remove-key = source.utilities.ndjson_remove_key:run",
         ]
     },
 )
