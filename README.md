@@ -1,4 +1,4 @@
-# PyCLI Utilities
+# PyCLI Utilities <br/>[![Upload Python Package](https://github.com/itsthevp/pycli-utilities/actions/workflows/python-publish.yml/badge.svg?branch=main)](https://github.com/itsthevp/pycli-utilities/actions/workflows/python-publish.yml)
 - As name suggests, CLI Utilities is the python package containing various CLI utilities to perform various operations on different types on files.
 
 - Every utility has its own sets of configuration options which you can explore by specifying -h or --help after utility's command. 
