@@ -21,10 +21,7 @@
 
 from time import time
 
-from typing import Generator
-from typing import TextIO
-
-from source.cli import CSVUtils
+from source.utilities.csv.cli import CSVUtils
 
 
 class SplitCSV(CSVUtils):

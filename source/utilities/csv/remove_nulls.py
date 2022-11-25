@@ -21,35 +21,24 @@
 
 from time import time
 
-from source.cli import CSVUtils
+from source.helpers import null_striper
+from source.utilities.csv.cli import CSVUtils
 
 
-class ShiftColumnCSV(CSVUtils):
-    prog = "csv-shift-column"
-    usage = "%(prog)s file from_location to_location [options]"
-    description = "This utility is designed to shift (not swap) particular column of a CSV file."
+class DeNULLCSV(CSVUtils):
+    prog = "csv-remove-nulls"
+    description = "This utility is designed to remove null characters and rows from a CSV file."
+    usage = "%(prog)s file [options]"
 
     def add_arguments(self) -> None:
         super().add_arguments()
-        self.parser.add_argument(
-            "from_location",
-            metavar="from_location",
-            type=int,
-            help="Column's number which needs to be shifted (Starting from 1).",
-        )
-        self.parser.add_argument(
-            "to_location",
-            metavar="to_location",
-            type=int,
-            help="Column's number where column needs to be placed (Starting from 1).",
-        )
         self.parser.add_argument(
             "--output-file",
             type=str,
             metavar="",
             dest="output",
             help="Output CSV file name",
-            default=f"column-shifted-csv-{int(time())}.csv",
+            default=f"nulls-removed-csv-{int(time())}.csv",
         )
 
     def main(self) -> None:
@@ -58,36 +47,27 @@ class ShiftColumnCSV(CSVUtils):
             open(self.args.output, "w", encoding=self.args.encoding) as w,
         ):
             line = r.readline()
-            col_count = line.count(self.args.separator) + 1
-
-            # Validating shifting locations
-            if (
-                not 1 <= self.args.from_location <= col_count
-                and not 1 <= self.args.to_location <= col_count
-            ):
-                self.log("Invalid shift locations passed !!")
-                raise SystemExit()
-
             while line:
-                columns = line.split(self.args.separator)
-                shift_content = columns.pop(self.args.from_location - 1)
-
-                # Handling new line
-                if self.args.from_location == col_count:
-                    shift_content = shift_content.rstrip("\n")
-                    columns[-1] += "\n"
-                if self.args.to_location == col_count:
-                    columns[-1] = columns[-1].rstrip("\n")
-                    shift_content += "\n"
-
-                columns.insert(self.args.to_location - 1, shift_content)
-                w.write(self.args.separator.join(columns))
-
+                stripped_line = null_striper(line)
+                if len(stripped_line) > 1:
+                    # >1 is to make sure we don't write empty lines
+                    if len(stripped_line) == len(line):
+                        # Nothing modified which implies that the line was without NULLs
+                        # So, writing as it is
+                        w.write(line)
+                    else:
+                        # Length modified means Line was having NULL
+                        # So, here we have to check for NULL row as well (containing only separators)
+                        if (
+                            len(stripped_line.replace(self.args.separator, ""))
+                            > 1
+                        ):
+                            w.write(stripped_line)
                 line = r.readline()
 
 
 def run() -> None:
-    ShiftColumnCSV().run()
+    DeNULLCSV().run()
 
 
 if __name__ == "__main__":

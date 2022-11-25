@@ -27,13 +27,13 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "csv-validate = source.utilities.csv_validate:run",
-            "csv-remove-nulls = source.utilities.csv_remove_nulls:run",
-            "csv-remove-column = source.utilities.csv_remove_column:run",
-            "csv-shift-column = source.utilities.csv_shift_column:run",
-            "csv-split = source.utilities.csv_split:run",
-            "ndjson-validate = source.utilities.ndjson_validate:run",
-            "ndjson-remove-key = source.utilities.ndjson_remove_key:run",
+            "csv-validate = source.utilities.csv.validate:run",
+            "csv-remove-nulls = source.utilities.csv.remove_nulls:run",
+            "csv-remove-column = source.utilities.csv.remove_column:run",
+            "csv-shift-column = source.utilities.csv.shift_column:run",
+            "csv-split = source.utilities.csv.split:run",
+            "ndjson-validate = source.utilities.ndjson.validate:run",
+            "ndjson-remove-key = source.utilities.ndjson.remove_key:run",
         ]
     },
 )

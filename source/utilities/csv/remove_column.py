@@ -19,59 +19,60 @@
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
-from json import dumps
-from json import loads
 from time import time
 
-from source.cli import NDJSONUtils
+from source.utilities.csv.cli import CSVUtils
 
 
-class RemoveKeyNDJSON(NDJSONUtils):
-    prog = "ndjson-remove-key"
-    usage = "%(prog)s file keyName [options]"
-    description = "This utility is designed to remove a particular key from every record of NDJSON file."
+class RemoveColumnCSV(CSVUtils):
+    prog = "csv-remove-column"
+    description = (
+        "This utility is designed to remove specific column from a CSV file."
+    )
+    usage = "%(prog)s file column_number [options]"
 
     def add_arguments(self) -> None:
         super().add_arguments()
         self.parser.add_argument(
-            "key_name",
-            metavar="key",
-            type=str,
-            help="Key's name that you want to remove from every record.",
+            "column_number",
+            metavar="column_number",
+            type=int,
+            help="Column's number which needs to be removed (Starting from 1).",
         )
         self.parser.add_argument(
             "--output-file",
             type=str,
             metavar="",
             dest="output",
-            help="Output NDJSON file name",
-            default=f"key-removed-ndjson-{int(time())}.ndjson",
+            help="Output CSV file name",
+            default=f"column-removed-csv-{int(time())}.csv",
         )
 
     def main(self) -> None:
         with (
-            open(self.args.input, "r", encoding=self.args.encoding) as ro,
-            open(self.args.output, "w", encoding=self.args.encoding) as wo,
+            open(self.args.input, "r", encoding=self.args.encoding) as r,
+            open(self.args.output, "w", encoding=self.args.encoding) as w,
         ):
-            line = ro.readline()
+            line = r.readline()
+
+            # Checking that supplied column number is valid
+            col_count = line.count(self.args.separator)
+            if not 0 < self.args.column_number <= col_count + 1:
+                self.log("Invalid column number provided for removal.")
+                raise SystemExit()
+
             while line:
-                try:
-                    record: dict = loads(line)
-                    if record.get(self.args.key_name, None) is not None:
-                        record.pop(self.args.key_name)
-                    wo.write(
-                        dumps(record, sort_keys=self.args.sort_keys) + "\n"
-                    )
-                except Exception as ex:
-                    self.log(f"Operation Failed\nReason: {str(ex)}")
-                    break
-                line = ro.readline()
-            else:
-                self.log("Operation Completed Successfully")
+                cols = line.split(self.args.separator)
+                cols.pop(self.args.column_number - 1)
+                # Appening new line char to second last column if last column was removed
+                if self.args.column_number == col_count + 1:
+                    cols[-1] += "\n"
+                w.write(self.args.separator.join(cols))
+                line = r.readline()
 
 
 def run() -> None:
-    RemoveKeyNDJSON().run()
+    RemoveColumnCSV().run()
 
 
 if __name__ == "__main__":

@@ -21,7 +21,7 @@
 
 from json import loads
 
-from source.cli import NDJSONUtils
+from source.utilities.ndjson.cli import NDJSONUtils
 
 
 class ValidateNDJSON(NDJSONUtils):

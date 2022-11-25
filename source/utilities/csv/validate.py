@@ -19,7 +19,7 @@
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
 
-from source.cli import CSVUtils
+from source.utilities.csv.cli import CSVUtils
 
 
 class ValidateCSV(CSVUtils):
