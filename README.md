@@ -8,7 +8,7 @@
 # Available Utilities
 
 #### CSV Validator
-
+---
 ```console
 $ csv-validate file [options]
 ```
@@ -17,7 +17,7 @@ This utility is designed to validate CSV file by validating that each row of the
 
 
 #### CSV NULL Cleaner
-
+---
 ```console
 $ csv-remove-nulls file [options]
 ```
@@ -30,7 +30,7 @@ This utility basically does the two things:
 
 
 #### CSV Column Remover
-
+---
 ```console
 $ csv-remove-column file column_number [options]
 ```
@@ -39,7 +39,7 @@ This utility is designed to remove specific column from the CSV file.
 
 
 #### CSV Column Shifter
-
+---
 ```console
 $ csv-shift-column file from_location to_location [options]
 ```
@@ -48,7 +48,7 @@ This utility is designed to shift particular column within the CSV file.
 
 
 #### CSV Splitter
-
+---
 ```console
 $ csv-split file number_of_records [options]
 ```
@@ -57,9 +57,18 @@ This utility is designed to split the large CSV file into multiple CSV files by 
 
 
 #### NDJSON Validator
-
+---
 ```console
 $ ndjson-validate file [options]
 ```
 
 This utility is designed to validate the NDJSON file.
+
+
+#### NDJSON Key Remover
+---
+```console
+$ ndjson-remove-key file keyName [options]
+```
+
+This utility is designed to remove a particular key (if exists) from all the records of a NDJSON file.
