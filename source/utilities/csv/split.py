@@ -66,7 +66,7 @@ class SplitCSV(CSVUtils):
                 counter += 1
                 line = r.readline()
 
-                if len(line) > 1 and (counter % self.args.records) == 0:
+                if counter % self.args.records == 0 and len(line) > 1:
                     writer.close()
                     split_counter += 1
                     writer = get_writer(split_counter)
