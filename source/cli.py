@@ -33,14 +33,14 @@ class CLIUtils:
     epilog = "Feel free to suggest new features / improvements at https://github.com/itsthevp"
 
     def __init__(self) -> None:
-        self._log_stream = stdout
-        self._base_parser()
+        self.__log_stream = stdout
+        self.__base_parser()
         self.add_arguments()
         self.args = self.parser.parse_args()
 
         # Checking for output stream
         if self.args.log_file != stdout:
-            self._log_stream = open(self.args.log_file, mode="w")
+            self.__log_stream = open(self.args.log_file, mode="w")
 
     def add_arguments(self) -> None:
         """This method is for adding utility specific arguments"""
@@ -63,7 +63,7 @@ class CLIUtils:
                 "Execution completed in %s seconds" % (time() - start_time)
             )
             # Closing the log stream
-            self._log_stream.close()
+            self.__log_stream.close()
 
     def log(self, text: str) -> None:
         """logs the message to output stream
@@ -71,7 +71,7 @@ class CLIUtils:
         Args:
             text (str): text to log
         """
-        print(text, file=self._log_stream)
+        print(text, file=self.__log_stream)
 
     def main(self) -> None:
         """Utility's main logic block
@@ -81,7 +81,7 @@ class CLIUtils:
         """
         raise NotImplementedError
 
-    def _base_parser(self):
+    def __base_parser(self):
         # Base parser initialization
         self.parser = ArgumentParser(
             prog=self.prog,
