@@ -56,6 +56,15 @@ $ csv-split file number_of_records [options]
 This utility is designed to split the large CSV file into multiple CSV files by number of records.
 
 
+#### CSV Column Merger
+---
+```console
+$ csv-merge-columns file [options]
+```
+
+This utility is designed to merge two or more columns of a CSV file.
+
+
 #### NDJSON Validator
 ---
 ```console
