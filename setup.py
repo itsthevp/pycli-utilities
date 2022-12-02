@@ -35,6 +35,7 @@ setup(
             "csv-merge-columns = source.utilities.csv.merge_columns:run",
             "ndjson-validate = source.utilities.ndjson.validate:run",
             "ndjson-remove-key = source.utilities.ndjson.remove_key:run",
+            "ndjson-merge-keys = source.utilities.ndjson.merge_keys:run",
         ]
     },
 )

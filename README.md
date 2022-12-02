@@ -81,3 +81,12 @@ $ ndjson-remove-key file keyName [options]
 ```
 
 This utility is designed to remove a particular key (if exists) from all the records of a NDJSON file.
+
+
+#### NDJSON Key Merger
+---
+```console
+$ ndjson-merge-keys file --keys key1 key2 ... [options]
+```
+
+This utility is designed to merge multiple keys of every record of a NDJSON file.
