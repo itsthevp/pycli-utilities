@@ -8,7 +8,7 @@ with open("README.md", "r") as read_me:
 
 setup(
     name="pycli-utilities",
-    version="0.1.0",
+    version="0.1.2",
     author="Vishv Patel (itsthevp)",
     description="pyCLI Utilities",
     keywords=["cli", "utils", "cli-utils", "csv", "json"],
